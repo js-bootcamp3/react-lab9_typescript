@@ -1,18 +1,5 @@
 import React from 'react'
-
-export enum GENDER_TYPES {
-  MALE = 'Male',
-  FEMALE = 'Female',
-  OTHER = 'Other',
-}
-
-export interface IHouse {
-  int: number
-}
-export interface IAddress {
-  street: string
-  houses: IHouse[]
-}
+import { GENDER_TYPES, IAddress } from './../../types/student'
 
 interface IProps {
   name: string;

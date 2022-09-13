@@ -1,5 +1,6 @@
 import React from 'react';
-import { ListItem, GENDER_TYPES, IAddress } from './ListItem';
+import { ListItem } from './ListItem';
+import {GENDER_TYPES, IAddress } from './../../types/student'
 
 const List = () => {
   const items = [
