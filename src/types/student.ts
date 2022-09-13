@@ -17,7 +17,7 @@ export type TStudent = {
   id: number,
   name: string,
   gender: GENDER_TYPES
-  age: number,
+  age?: number | null,
   skills: string[],
-  address: IAddress
+  address?: IAddress
 }

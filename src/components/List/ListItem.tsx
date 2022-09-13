@@ -9,6 +9,7 @@ interface IProps {
   address?: IAddress
 }
 export const ListItem = ({name, gender, age, skills, address}: IProps) => {
+  
   return (
     <div>
       <h2>{name}</h2>

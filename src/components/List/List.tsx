@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ListItem } from './ListItem';
-import {GENDER_TYPES, IAddress } from './../../types/student'
+import {GENDER_TYPES, IAddress, TStudent } from './../../types/student'
+import { ItemDetails } from './ItemDetails';
 
 const List = () => {
-  const items = [
+  const [activeItem, setActiveItem] = useState<TStudent | null>(null)
+
+  const items: TStudent[] = [
     {
       id: 1,
       name: 'Almaz',
@@ -40,17 +43,27 @@ const List = () => {
     }
   ]
 
+  const handleClick = (item: TStudent) => {
+    setActiveItem(item)
+  }
+
+  if (activeItem) {
+    return  <ItemDetails item={activeItem} back={() => setActiveItem(null)}/>
+  }
+
   return (
     <div>
       <h1>List</h1>
-      {items.map((item) => 
-        <ListItem
-          name={item.name}
-          gender={item.gender}
-          age={item.age}
-          skills={item.skills}
-          address={item.address}
-        />
+      {items.map((item: TStudent) => 
+        <div key={item.id} onClick={() => handleClick(item)}>
+          <ListItem
+            name={item.name}
+            gender={item.gender}
+            age={item.age}
+            skills={item.skills}
+            address={item.address}
+          />
+        </div>
       )}
     </div>
   )
