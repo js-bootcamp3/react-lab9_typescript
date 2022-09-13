@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import { ListItem } from './ListItem';
 import {GENDER_TYPES, IAddress, TStudent } from './../../types/student'
 import { ItemDetails } from './ItemDetails';
 
 const List = () => {
+  const navigate = useNavigate()
   const [activeItem, setActiveItem] = useState<TStudent | null>(null)
 
   const items: TStudent[] = [
@@ -47,6 +49,11 @@ const List = () => {
     setActiveItem(item)
   }
 
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/')
+  }
+
   if (activeItem) {
     return  <ItemDetails item={activeItem} back={() => setActiveItem(null)}/>
   }
@@ -54,6 +61,7 @@ const List = () => {
   return (
     <div>
       <h1>List</h1>
+      <div><button onClick={handleLogout}>Log Out</button></div>
       {items.map((item: TStudent) => 
         <div key={item.id} onClick={() => handleClick(item)}>
           <ListItem
