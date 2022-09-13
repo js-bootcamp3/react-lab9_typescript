@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import { ListItem } from './ListItem';
 import {GENDER_TYPES, IAddress, TStudent } from './../../types/student'
@@ -7,6 +7,13 @@ import { ItemDetails } from './ItemDetails';
 const List = () => {
   const navigate = useNavigate()
   const [activeItem, setActiveItem] = useState<TStudent | null>(null)
+  const [user, setUser] = useState<any>(null)
+  const userStorage = localStorage.getItem('user')
+
+  useEffect(() => {
+    if (!userStorage) return
+    setUser(JSON.parse(userStorage))
+  }, [userStorage])
 
   const items: TStudent[] = [
     {
@@ -60,7 +67,7 @@ const List = () => {
 
   return (
     <div>
-      <h1>List</h1>
+      <h1>Hello {user?.username}</h1>
       <div><button onClick={handleLogout}>Log Out</button></div>
       {items.map((item: TStudent) => 
         <div key={item.id} onClick={() => handleClick(item)}>
